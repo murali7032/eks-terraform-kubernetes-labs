@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: backend
+  namespace: mesh-lab
+spec:
+  hosts:
+    - backend
+    - "*"
+  gateways:
+    - mesh
+    - backend-gateway
+  http:
+    - route:
+        - destination:
+            host: backend
+            subset: v1
+          weight: 50
+        - destination:
+            host: backend
+            subset: v2
+          weight: 50

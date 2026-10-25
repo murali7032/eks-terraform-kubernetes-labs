@@ -1,0 +1,40 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.lock.info
+*.tfplan
+tfplan
+tfplan.json
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraform.tfvars
+*.tfvars
+!*.tfvars.example
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local secrets / env
+.env
+.env.*
+local-secrets/
+*.pem
+*.key
+
+aws_secretes
+
+# Keep the locally unpacked upstream Istio distribution out of this learning repo.
+# Retain only the small custom profile used by the lab.
+/istio/*
+!/istio/bin/
+/istio/bin/*
+!/istio/bin/istio-small.yaml

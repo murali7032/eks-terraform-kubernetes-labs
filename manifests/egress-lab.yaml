@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: egress-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: egress-client
+  template:
+    metadata:
+      labels:
+        app: egress-client
+    spec:
+      containers:
+        - name: client
+          image: busybox:1.36
+          command: ["sh", "-c", "sleep 3600"]
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: egress-destination
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: egress-destination
+  template:
+    metadata:
+      labels:
+        app: egress-destination
+    spec:
+      containers:
+        - name: web
+          image: nginx:stable
+          ports:
+            - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: egress-destination
+spec:
+  selector:
+    app: egress-destination
+  ports:
+    - port: 80
+      targetPort: 80

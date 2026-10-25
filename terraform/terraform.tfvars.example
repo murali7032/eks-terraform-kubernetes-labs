@@ -1,0 +1,10 @@
+aws_region  = "ap-south-1"
+aws_profile = "default"
+# Required: uncomment and replace with your current public IP. Find it from a trusted source.
+# cluster_endpoint_allowed_cidrs = ["YOUR.PUBLIC.IP/32"]
+
+# Optional labs (leave disabled until you are ready to run them):
+# enable_external_elasticsearch = true
+# elasticsearch_allowed_cidr    = "YOUR.PUBLIC.IP.ADDRESS/32"
+# elasticsearch_key_name        = "YOUR_EXISTING_EC2_KEY_PAIR"
+# s3_test_bucket_name           = "YOUR_EXISTING_DISPOSABLE_BUCKET"

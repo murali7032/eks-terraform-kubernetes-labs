@@ -1,0 +1,9 @@
+# mtls-strict.yaml
+apiVersion: security.istio.io/v1
+kind: PeerAuthentication
+metadata:
+  name: default
+  namespace: mesh-lab
+spec:
+  mtls:
+    mode: STRICT

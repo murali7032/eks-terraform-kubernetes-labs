@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sidecar-demo
+spec:
+  containers:
+  - name: app
+    image: busybox:1.36
+    command: ["sh", "-c", "i=1; while true; do echo \"app log $i\" >> /logs/app.log; i=$((i+1)); sleep 3; done"]
+    volumeMounts:
+    - name: logs
+      mountPath: /logs
+
+  - name: log-reader
+    image: busybox:1.36
+    command: ["sh", "-c", "touch /logs/app.log; tail -n 0 -f /logs/app.log"]
+    volumeMounts:
+    - name: logs
+      mountPath: /logs
+
+  volumes:
+  - name: logs
+    emptyDir: {}

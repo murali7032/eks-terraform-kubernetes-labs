@@ -1,0 +1,14 @@
+alertmanager:
+  enabled: false
+
+grafana:
+  enabled: true
+  persistence:
+    enabled: false
+
+prometheus:
+  enabled: true
+  prometheusSpec:
+    replicas: 1
+    retention: 24h
+    storageSpec: {}

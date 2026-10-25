@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cpu-demo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cpu-demo
+  template:
+    metadata:
+      labels:
+        app: cpu-demo
+    spec:
+      containers:
+        - name: cpu-demo
+          image: busybox:1.36
+          # Intentional CPU load for the resource and HPA exercises. Delete the
+          # workload when finished; the container is capped at 200m CPU.
+          command: ["sh", "-c", "while true; do :; done"]
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "64Mi"
+            limits:
+              cpu: "200m"
+              memory: "128Mi"
